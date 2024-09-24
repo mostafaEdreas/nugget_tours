@@ -7,23 +7,30 @@
                 <table class="table table-striped">
                     <thead>
                         <th>#</th>
-                        <th>Name</th>
+                        <th>Visitor's Name</th>
+                        <th>Visitor's Phone</th>
+                        <th>Visitor's email</th>
+                        <th>Flight Name</th>
                         <th>Departure City </th>
                         <th>Arrival City</th>
                         <th>Departure Date</th>
                         <th>Departure Time</th>
-                        
+
+
                     </thead>
                     <Tbody>
                         @foreach ($bookings as $index => $booking)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
+                                <td>{{ $booking->name }}</td>
+                                <td>{{ $booking->phone }}</td>
+                                <td>{{ $booking->email }}</td>
                                 <td>{{ $booking->flight?->name }}</td>
                                 <td>{{ $booking->flight?->from_city }}</td>
                                 <td>{{ $booking->flight?->to_city }}</td>
                                 <td>{{ $booking->flight?->trip_date }}</td>
                                 <td>{{ $booking->flight?->trip_time }}</td>
-                                
+
                             </tr>
                         @endforeach
 
@@ -36,8 +43,8 @@
 
 
 
-  
-  
+
+
   <!-- Modal -->
   <div class="modal fade" id="bookingModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -46,7 +53,7 @@
           <h5 class="modal-title" id="staticBackdropLabel">Booking flight</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-       
+
             <div class="modal-body">
                 <form method="post" action="{{ url('booking') }}">
                     @csrf
